@@ -80,3 +80,12 @@ POST /transaction
 - O arquivo de documentação está localizado na pasta support/docs
 
 - Usamos Redis para cache e sua porta padrão 6379
+
+## Materiais úteis
+- http://br.phptherightway.com/
+- https://www.php-fig.org/psr/psr-12/
+- https://www.atlassian.com/continuous-delivery/software-testing/types-of-software-testing
+- https://github.com/exakat/php-static-analysis-tools
+- https://martinfowler.com/articles/microservices.html
+- https://docs.docker.com/develop/develop-images/dockerfile_best-practices/
+- https://lumen.laravel.com/docs/8.x
