@@ -6,32 +6,32 @@ This repository allows the creation of a Docker environment that meets
 ## Architecture
 ![Architecture overview](support/docs/architecture.png "Architecture")
 
-## Usage
-### Quick Start
-Commands should be executed in cloned target folder
+## Uso
+### Começo rápido
+Os comandos devem ser executados na pasta de destino clonada
 
 ```
-# Cloning repository
+# Repositório de clonagem
 $ git clone https://github.com/rsurfings/users-api.git <sua-pasta>
 ```
 
 ```
-# Building containers
+# Construindo containers
 $ cd <sua-pasta> && docker-compose up --build
 ```
 
 ```
-# Installing
+# Instalando
 $ docker-compose exec users-api composer install
 ```
 
 ```
-# Testing
+# Testando
 $ docker-compose exec users-api ./vendor/bin/phpunit --testdox
 ```
 
 ```
-# for test the api in external call is necessary creating the tables doing the migrations 
+# Testar a api em chamada externa é necessário criar as tabelas fazendo as migrações
 $ docker-compose exec users-api php artisan migrate
 ```
 
