@@ -35,7 +35,7 @@ $ docker-compose exec users-api ./vendor/bin/phpunit --testdox
 $ docker-compose exec users-api php artisan migrate
 ```
 
-## Problem
+## Problema
 
 Temos 2 tipos de usuários(users), os comuns(consumers) e lojistas(sellers), ambos têm carteira com dinheiro e realizam transferências(transactions) entre eles. Vamos nos atentar **somente** ao fluxo de transferência(transactions) entre dois usuários(users).
 
