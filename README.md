@@ -69,7 +69,7 @@ POST /transaction
 
 ## Instrução
 
-- A API é mapeada para a porta 8000 em seu localhost, para [chamadas de API] (http://localhost:8000/) retornará a versão do framework em execução.
+- A API é mapeada para a porta 8000 em seu localhost, para [chamadas de API] (http://localhost:8000/) a requisição GET localhost:8000/ vai retornar a versão do framework em execução.
 
 - Você pode usar o [Postman] (https://www.postman.com/downloads/) para testar as chamadas de API
 
