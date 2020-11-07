@@ -1,0 +1,84 @@
+version: "3.7"
+services:
+  users-api:
+    container_name: users-api
+    build:
+      args:
+        user: api
+        uid: 1000
+      context: ./support/docker/php
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    working_dir: /var/www/
+    volumes:
+      - ./:/var/www
+    ports:
+      - "9000:9000"
+    depends_on:
+      - users-database
+      - users-cache
+    networks:
+      - users-api-network
+  users-database:
+    container_name: users-database
+    build:
+      context: ./support/docker/mysql
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - ./support/docker/mysql:/docker-entrypoint-initdb.d
+    ports:
+      - "3306:3306"
+    networks:
+      - users-api-network
+
+  users-webserver:
+    container_name: users-webserver
+    build:
+      context: ./support/docker/nginx
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    ports:
+      - 8000:80
+    volumes:
+      - ./:/var/www
+      - ./support/docker/nginx/etc/nginx/conf.d:/etc/nginx/conf.d/
+    depends_on:
+      - users-api
+    networks:
+      - users-api-network
+
+  users-cache:
+    container_name: users-cache
+    build:
+      context: ./support/docker/redis
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - ./support/docker/redis/redis.conf:/usr/local/etc/redis/redis.conf
+    networks:
+      - users-api-network
+
+  users-api-documentation:
+    build:
+      context: ./support/docker/swagger
+      dockerfile: Dockerfile
+    container_name: users-api-documentation
+    restart: unless-stopped
+    ports:
+      - "8001:8080"
+    volumes:
+      - ./support/docs/api/api.yaml:/api.yaml
+    environment:
+      SWAGGER_JSON: /api.yaml
+    networks:
+      - users-api-network
+
+networks:
+  users-api-network:
+    driver: bridge
