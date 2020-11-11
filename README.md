@@ -3,9 +3,6 @@
 This repository allows the creation of a Docker environment that meets
 [Lumen 8.x](https://lumen.laravel.com/docs/8.x#server-requirements) requirements.
 
-## Architecture
-![Architecture overview](support/docs/architecture.png "Architecture")
-
 ## Uso
 ### Começo rápido
 Os comandos devem ser executados na pasta de destino clonada
