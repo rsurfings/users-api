@@ -162,22 +162,16 @@ class TransactionTest extends TestCase
         // register the seller
         $userThree = User::factory()->create($this->userThree);
         $userThree->seller()->save(Seller::factory()->make());
-        $this->transaction['payee_id'] = $userThree->seller->account->id;
-        
-        $this->post('/transactions', $this->transaction)
-            ->seeStatusCode(200)
-            ->seeJson([
-                'id' => 1,
-                'payee_id' => $this->transaction['payee_id'],
-                'payer_id' => $this->transaction['payer_id'],
-                'value' => $this->transaction['value'],
-            ]);
+        $this->transaction['payer_id'] = $userThree->seller->account->id;
 
-        $this->seeInDatabase('transactions', [
-            'payee_id' => $this->transaction['payee_id'],
-            'payer_id' => $this->transaction['payer_id'],
-            'value' => $this->transaction['value'],
-        ]);
+        $this->transaction['payee_id'] = $this->accountUserOne;
+
+        $this->post('/transactions', $this->transaction)
+            ->seeStatusCode(401)
+            ->seeJsonEquals([
+                'code' => '401',
+                'message' => 'Transação não autorizada',
+            ]);
     }
 
     /**
