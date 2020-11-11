@@ -163,7 +163,7 @@ class TransactionTest extends TestCase
         $userThree = User::factory()->create($this->userThree);
         $userThree->seller()->save(Seller::factory()->make());
         $this->transaction['payee_id'] = $userThree->seller->account->id;
-
+        
         $this->post('/transactions', $this->transaction)
             ->seeStatusCode(200)
             ->seeJson([

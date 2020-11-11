@@ -51,8 +51,14 @@ class Transaction implements TransactionInterface
             DB::commit();
         } catch (\Exception $e) {
             DB::rollback();
+            throw $e;
         }
 
-        return $transaction->toArray();
+        return [
+            'id' => $transaction['id'],
+            'payee_id' => $transaction->payee_id,
+            'payer_id' => $transaction->payer_id,
+            'value' => $transaction->value
+        ];
     }
 }

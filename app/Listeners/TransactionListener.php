@@ -6,6 +6,9 @@ use App\Events\TransactionEvent;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use App\User as UserModel;
+use Exception;
+
+use function PHPUnit\Framework\throwException;
 
 class TransactionListener
 {
@@ -27,12 +30,14 @@ class TransactionListener
      */
     public function handle(TransactionEvent $event)
     {
-        $user = UserModel::findOrFail(2);
+
+        $payer_id = $event->transaction->getAttribute('payer_id');
+        $user = UserModel::findOrFail($payer_id);
 
         if (isset($user->seller)) {
-            false;
+            throw new Exception;
         }
 
-        return false;
+        return true;
     }
 }

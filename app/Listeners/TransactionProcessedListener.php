@@ -3,6 +3,7 @@
 namespace App\Listeners;
 
 use App\Events\TransactionProcessedEvent;
+use Exception;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Facades\Http;
@@ -28,7 +29,9 @@ class TransactionProcessedListener
     public function handle(TransactionProcessedEvent $event)
     {
         //
-        $requet = Http::get('https://run.mocky.io/v3/b19f7b9f-9cbf-4fc6-ad22-dc30601aec04');
-        return $requet;
+        $request = Http::get('https://run.mocky.io/v3/b19f7b9f-9cbf-4fc6-ad22-dc30601aec04');
+        if(!$request)
+            throw new Exception;
+        return $request;
     }
 }
