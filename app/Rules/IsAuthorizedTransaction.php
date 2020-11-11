@@ -25,10 +25,10 @@ class IsAuthorizedTransaction extends BaseRule implements Rule
     public function passes($attribute, $payer_id): bool
     {
 
-        $user = UserModel::findOrFail($payer_id);
-
+        $user = UserModel::find($payer_id);
+   
         if (isset($user->seller)) {
-           return false;
+            return false;
         }
         return true;
     }
