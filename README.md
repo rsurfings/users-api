@@ -1,7 +1,6 @@
+[![Build Status](https://travis-ci.com/rsurfings/users-api.svg?branch=main)](https://travis-ci.org//rsurfings/users-api)
+
 # Users API
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-This repository allows the creation of a Docker environment that meets
-[Lumen 8.x](https://lumen.laravel.com/docs/8.x#server-requirements) requirements.
 
 ## Uso
 ### Começo rápido
