@@ -40,8 +40,6 @@ class Transaction implements TransactionInterface
 
             DB::commit();
 
-            event(new TransactionEvent($transaction));
-
             event(new TransactionProcessEvent($transaction));
 
             event(new TransactionProcessedEvent($transaction));

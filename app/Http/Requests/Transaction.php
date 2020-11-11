@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Rules\IsAuthorized;
+use App\Rules\IsAuthorizedTransaction;
 
 class Transaction extends BaseRequest
 {
@@ -16,7 +17,11 @@ class Transaction extends BaseRequest
     {
         return [
             'payee_id' => 'required|exists:accounts,id',
-            'payer_id' => 'required|exists:accounts,id',
+            'payer_id' => [
+                'required',
+                'exists:accounts,id',
+                new IsAuthorizedTransaction
+            ],
             'value' => [
                 'required',
                 new IsAuthorized,

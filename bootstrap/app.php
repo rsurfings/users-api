@@ -83,9 +83,9 @@ $app->configure('logging');
 //     'auth' => App\Http\Middleware\Authenticate::class,
 // ]);
 
-$app->middleware([
-    App\Http\Middleware\CorsMiddleware::class
-]);
+//$app->middleware([
+//    App\Http\Middleware\CorsMiddleware::class
+//]);
 
 /*
 |--------------------------------------------------------------------------
