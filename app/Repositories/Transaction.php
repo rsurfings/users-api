@@ -27,7 +27,6 @@ class Transaction implements TransactionInterface
      */
     public function create(int $payeeId, int $payerId, float $value): array
     {
-        //the transaction will be reversed in any case of inconsistency
         DB::beginTransaction();
 
         try {
@@ -35,20 +34,18 @@ class Transaction implements TransactionInterface
             $transaction = new TransactionModel();
             $transaction->payee_id = $payeeId;
             $transaction->payer_id = $payerId;
-            $transaction->value = $value;
-
-            // seller only receive transfers, do not send money to anyone.
-            event(new TransactionEvent($transaction));
-
-            // triggers the query of the external authorizing service
-            event(new TransactionProcessEvent($transaction));
-
-            //transfer notification
-            event(new TransactionProcessedEvent($transaction));
+            $transaction->value = $value;          
 
             $transaction->save();
 
             DB::commit();
+
+            event(new TransactionEvent($transaction));
+
+            event(new TransactionProcessEvent($transaction));
+
+            event(new TransactionProcessedEvent($transaction));
+
         } catch (\Exception $e) {
             DB::rollback();
             throw $e;
