@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/rsurfings/users-api.svg?branch=main)](https://travis-ci.org//rsurfings/users-api)
+[![Build Status](https://travis-ci.com/rsurfings/users-api.svg?branch=master)](https://travis-ci.org//rsurfings/users-api)
 
 # Users API
 
