@@ -2,7 +2,6 @@
 
 namespace App\Repositories;
 
-use App\Events\TransactionEvent;
 use App\Events\TransactionProcessedEvent;
 use App\Events\TransactionProcessEvent;
 use App\Transaction as TransactionModel;
@@ -34,7 +33,7 @@ class Transaction implements TransactionInterface
             $transaction = new TransactionModel();
             $transaction->payee_id = $payeeId;
             $transaction->payer_id = $payerId;
-            $transaction->value = $value;          
+            $transaction->value = $value;
 
             $transaction->save();
 
@@ -43,7 +42,6 @@ class Transaction implements TransactionInterface
             event(new TransactionProcessEvent($transaction));
 
             event(new TransactionProcessedEvent($transaction));
-
         } catch (\Exception $e) {
             DB::rollback();
             throw $e;
