@@ -6,9 +6,7 @@ use App\Events\TransactionEvent;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use App\User as UserModel;
-use Exception;
-
-use function PHPUnit\Framework\throwException;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class TransactionListener
 {
@@ -35,7 +33,7 @@ class TransactionListener
         $user = UserModel::findOrFail($payer_id);
 
         if (isset($user->seller)) {
-            throw new Exception;
+            throw new ModelNotFoundException;
         }
 
         return true;

@@ -3,9 +3,9 @@
 namespace App\Listeners;
 
 use App\Events\TransactionProcessedEvent;
-use Exception;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Http;
 
 class TransactionProcessedListener
@@ -31,7 +31,7 @@ class TransactionProcessedListener
         //
         $request = Http::get('https://run.mocky.io/v3/b19f7b9f-9cbf-4fc6-ad22-dc30601aec04');
         if(!$request)
-            throw new Exception;
+            throw new ModelNotFoundException;
         return $request;
     }
 }

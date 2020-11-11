@@ -62,12 +62,20 @@ class TransactionController extends Controller
      */
     public function store(Transaction $request): JsonResponse
     {
+
         $payeeId = $request->get('payee_id');
         $payerId = $request->get('payer_id');
-        $value = $request->get('value');    
+        $value = $request->get('value');
 
-        $response = $this->transaction->create($payeeId, $payerId, $value);
+        try {
+            $response = $this->transaction->create($payeeId, $payerId, $value);
 
-        return response()->json($response);
+            return response()->json($response);
+        } catch (ModelNotFoundException $e) {
+            return response()->json([
+                'code' => '401',
+                'message' => 'Transação não autorizada',
+            ], 401);
+        }
     }
 }
