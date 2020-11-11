@@ -64,7 +64,7 @@ class TransactionController extends Controller
     {
         $payeeId = $request->get('payee_id');
         $payerId = $request->get('payer_id');
-        $value = $request->get('value');
+        $value = $request->get('value');    
 
         $response = $this->transaction->create($payeeId, $payerId, $value);
 

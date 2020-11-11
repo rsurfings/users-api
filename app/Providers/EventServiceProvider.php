@@ -15,5 +15,24 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\ExampleEvent' => [
             'App\Listeners\ExampleListener',
         ],
+        'App\Events\TransactionEvent' => [
+            'App\Listeners\TransactionListener',
+        ],
+        'App\Events\TransactionProcessEvent' => [
+            'App\Listeners\TransactionProcessListener'
+        ],
+        'App\Events\TransactionProcessedEvent' => [
+            'App\Listeners\TransactionProcessedListener'
+        ]
     ];
+
+    /**
+     * Register any event for your appication
+     * 
+     * @return avoid
+     */
+    public function boot()
+    {
+        parent::boot();
+    }
 }

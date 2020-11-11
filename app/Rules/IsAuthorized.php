@@ -23,15 +23,11 @@ class IsAuthorized extends BaseRule implements Rule
      */
     public function passes($attribute, $value): bool
     {
-        $client = app(Client::class);
 
-        try {
-            $response = $client->post('/transactions/authorize', ['json' => ['value' => $value]]);
-        } catch (Exception $e) {
-            return false;
-        }
-
-        return ($response->getStatusCode() === 200);
+        if ($value >= 100.00) {
+           return false;
+        } 
+        return true;
     }
 
     /**

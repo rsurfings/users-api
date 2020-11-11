@@ -1,5 +1,6 @@
 <?php
-use Illuminate\Http\Request;
+
+    use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,14 +29,4 @@ $router->group(['prefix' => 'users'], function () use ($router) {
 $router->group(['prefix' => 'transactions'], function () use ($router) {
     $router->post('', 'TransactionController@store');
     $router->get('/{id}', 'TransactionController@show');
-
-    // "External" service for authorization, for sake of simplicity is included with current API
-    $router->post('authorize', function (Request $request) {
-        $value = $request->get('value');
-        if ($value >= 100.00) {
-            return response('Transação não autorizada', 401);
-        } else {
-            return response('OK');
-        }
-    });
 });

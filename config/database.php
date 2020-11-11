@@ -19,7 +19,7 @@ return [
             'password'  => env('DB_PASSWORD','root'),
             'charset'   => env('DB_CHARSET', 'utf8'),
             'collation' => env('DB_COLLATION', 'utf8_unicode_ci'),
-            'prefix'    => env('DB_PREFIX', ''),
+            'prefix'    => env('DB_PREFIX', '')
         ],
     ],
 

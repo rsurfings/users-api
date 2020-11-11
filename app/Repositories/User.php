@@ -3,7 +3,6 @@
 namespace App\Repositories;
 
 use App\User as UserModel;
-use Illuminate\Support\Facades\Hash;
 
 class User implements UserInterface
 {
@@ -22,6 +21,7 @@ class User implements UserInterface
      */
     public function list(?string $query): array
     {
+        
         if (isset($query)) {
             $users = UserModel::where('full_name', 'like', "%{$query}%")->get();
         } else {

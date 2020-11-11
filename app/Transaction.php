@@ -17,7 +17,7 @@ class Transaction extends Model
     /**
      * @inheritDoc
      */
-    protected $dateFormat = 'Y-m-d\TH:i:s.u\Z';
+    //protected $dateFormat = 'Y-m-d\TH:i:s.u\Z';
 
     /**
      * @inheritDoc
