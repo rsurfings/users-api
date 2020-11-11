@@ -105,7 +105,6 @@ $app->register(App\Providers\AppServiceProvider::class);
 $app->register(App\Providers\RepositoryServiceProvider::class);
 $app->register(App\Providers\EventServiceProvider::class);
 $app->register(Illuminate\Redis\RedisServiceProvider::class);
-$app->register(Flipbox\LumenGenerator\LumenGeneratorServiceProvider::class);
 
 /*
  |--------------------------------------------------------------------------
